@@ -137,12 +137,14 @@ class Member_model extends Model {
       $builder->like('lname', $search);
       $builder->orLike('fname', $search);
       $builder->orLike('callsign', $search);
+        $builder->orLike('cur_year', $search);
       $cnt = $builder->countAllResults();
       if($cnt > 0) {
         $builder->resetQuery();
         $builder->like('lname', $search);
         $builder->orLike('fname', $search);
         $builder->orLike('callsign', $search);
+        $builder->orLike('cur_year', $search);
         $res = $builder->get()->getResult();
         foreach ($res as $key => $mem) {
           $mem_arr = $staff_mod->get_mem($mem->id_members);
